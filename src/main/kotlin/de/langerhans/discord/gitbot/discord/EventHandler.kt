@@ -30,7 +30,7 @@ open class EventHandler: DisposableBean {
             (reconnectTimer as Timer).cancel()
         }*/
         e.client.changePresence(false)
-        e.client.changeStatus(Status.game("Pokemon GO"))
+        e.client.changeStatus(Status.stream("Github!", "https://github.com/ICannt"))
     }
 
     /*private val RECONNECT_DELAY = TimeUnit.SECONDS.toMillis(15)
