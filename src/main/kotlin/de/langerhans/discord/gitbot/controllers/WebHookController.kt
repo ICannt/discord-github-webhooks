@@ -3,6 +3,7 @@ package de.langerhans.discord.gitbot.controllers
 import de.langerhans.discord.gitbot.GithubConfig
 import de.langerhans.discord.gitbot.handlers.IssueHandler
 import de.langerhans.discord.gitbot.handlers.PrHandler
+import de.langerhans.discord.gitbot.handlers.CommitHandler
 import de.langerhans.discord.gitbot.util.SignatureVerificationFailedException
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -25,6 +26,8 @@ open class WebHookController {
     @Autowired lateinit var config: GithubConfig
     @Autowired lateinit var issueHandler: IssueHandler
     @Autowired lateinit var prHandler: PrHandler
+    @Autowired lateinit var commitHandler: CommitHandler
+
 
     private val logger = LoggerFactory.getLogger(WebHookController::class.java)
     private val HMAC_SHA1_ALGORITHM = "HmacSHA1"
@@ -58,6 +61,7 @@ open class WebHookController {
             "ping" -> logger.info("WebHook registered!")
             "issues" -> issueHandler.handle(payload)
             "pull_request" -> prHandler.handle(payload)
+            "push" -> commitHandler.handle(payload)
         }
     }
 
