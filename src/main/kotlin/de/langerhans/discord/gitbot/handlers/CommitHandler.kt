@@ -14,8 +14,6 @@ open class CommitHandler: AbstractHandler() {
 
     override fun handle(payload: String) {
         val event = gson.fromJson(payload, PushEvent::class.java)
-
-
         val message = "[${event.repository}]Push by ${event.pusher}:"
         client.getChannelByID(config.targetChannel).sendMessage(message)
         for (commit in event.commits)
