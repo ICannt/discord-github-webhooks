@@ -20,7 +20,7 @@ open class CommitHandler: AbstractHandler() {
         client.getChannelByID(config.targetChannel).sendMessage(message)
         for (commit in event.commits)
         {
-            client.getChannelByID(config.targetChannel).sendMessage("${commit.id}: ${commit.message}")
+            client.getChannelByID(config.targetChannel).sendMessage("```${commit.message}")
         }
 
 
