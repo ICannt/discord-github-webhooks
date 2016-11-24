@@ -14,11 +14,13 @@ open class CommitHandler: AbstractHandler() {
 
     override fun handle(payload: String) {
         val event = gson.fromJson(payload, PushEvent::class.java)
-        val message = "[${event.repository}]Push by ${event.pusher}:"
+        val message = "[${event.repository.name}]Push by ${event.pusher.username}:"
+        System.out.println(message)
         client.getChannelByID(config.targetChannel).sendMessage(message)
         for (commit in event.commits)
         {
             client.getChannelByID(config.targetChannel).sendMessage("```${commit.message}")
+            System.out.println(commit)
         }
 
 
