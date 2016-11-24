@@ -19,7 +19,7 @@ open class CommitHandler: AbstractHandler() {
 
         for (commit in event.commits)
         {
-            client.getChannelByID(config.targetChannel).sendMessage("```Markdown\n#${commit.id}: ${commit.message} [${commit.url}]```")
+            client.getChannelByID(config.targetChannel).sendMessage("```Markdown\n#[${commit.id.substring(0,7)}\n ${commit.message}](${commit.url})```")
         }
 
 
