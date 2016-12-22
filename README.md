@@ -14,7 +14,3 @@ Copy `application.sample.yml` to `application.yml` and edit it to your needs.
 ```bash
 java -jar gitbot-0.0.1-SNAPSHOT.jar
 ```
-
-
----
-!
